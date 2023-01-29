@@ -1,0 +1,851 @@
+{
+  "resource_version": 88,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "recipes",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "name": "comment",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "recipe",
+                "using": {
+                  "foreign_key_constraint_on": "recipes_id"
+                }
+              },
+              {
+                "name": "user",
+                "using": {
+                  "foreign_key_constraint_on": "users_id"
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "check": {},
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "users_id",
+                    "comment"
+                  ]
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "users_id",
+                    "comment"
+                  ],
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "users_id",
+                    "comment"
+                  ],
+                  "filter": {}
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "users_id",
+                    "comment"
+                  ],
+                  "filter": {
+                    "users_id": {
+                      "_eq": "x-hasura-user-Id"
+                    }
+                  },
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "filter": {
+                    "users_id": {
+                      "_eq": "x-hasura-user-Id"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "images",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "recipe",
+                "using": {
+                  "foreign_key_constraint_on": "recipes_id"
+                }
+              }
+            ],
+            "computed_fields": [
+              {
+                "name": "fullimagelink",
+                "definition": {
+                  "function": {
+                    "name": "generatefullimagelink",
+                    "schema": "public"
+                  }
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "check": {},
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "image_link"
+                  ]
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "image_link"
+                  ],
+                  "computed_fields": [
+                    "fullimagelink"
+                  ],
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "image_link"
+                  ],
+                  "computed_fields": [
+                    "fullimagelink"
+                  ],
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "ingridents",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "recipe",
+                "using": {
+                  "foreign_key_constraint_on": "recipes_id"
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "check": {},
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "ingrident"
+                  ]
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "ingrident"
+                  ],
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "ingrident"
+                  ],
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "like",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "recipe",
+                "using": {
+                  "foreign_key_constraint_on": "recipes_id"
+                }
+              },
+              {
+                "name": "user",
+                "using": {
+                  "foreign_key_constraint_on": "users_id"
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "check": {},
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "users_id"
+                  ]
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "users_id"
+                  ],
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "users_id"
+                  ],
+                  "filter": {}
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [],
+                  "filter": {
+                    "users_id": {
+                      "_eq": "x-hasura-user-Id"
+                    }
+                  },
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "filter": {
+                    "users_id": {
+                      "_eq": "x-hasura-user-Id"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "rating",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "recipe",
+                "using": {
+                  "foreign_key_constraint_on": "recipes_id"
+                }
+              },
+              {
+                "name": "user",
+                "using": {
+                  "foreign_key_constraint_on": "users_id"
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "check": {},
+                  "columns": [
+                    "id",
+                    "rate",
+                    "recipes_id",
+                    "users_id"
+                  ]
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "rate",
+                    "recipes_id",
+                    "users_id"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "rate",
+                    "recipes_id",
+                    "users_id"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "rate",
+                    "recipes_id",
+                    "users_id"
+                  ],
+                  "filter": {
+                    "users_id": {
+                      "_eq": "x-hasura-user-Id"
+                    }
+                  },
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "filter": {
+                    "users_id": {
+                      "_eq": "x-hasura-user-Id"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "recipes",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "createdby",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "creatorsid": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "users",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "comments",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "recipes_id",
+                    "table": {
+                      "name": "comment",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "images",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "recipes_id",
+                    "table": {
+                      "name": "images",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "ingridents",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "recipes_id",
+                    "table": {
+                      "name": "ingridents",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "likes",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "recipes_id",
+                    "table": {
+                      "name": "like",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "ratings",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "recipes_id",
+                    "table": {
+                      "name": "rating",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "steps",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "recipes_id",
+                    "table": {
+                      "name": "steps",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "check": {},
+                  "columns": [
+                    "creatorsid",
+                    "id",
+                    "time",
+                    "catagories",
+                    "creatorsname",
+                    "description",
+                    "title"
+                  ]
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "creatorsid",
+                    "id",
+                    "time",
+                    "catagories",
+                    "creatorsname",
+                    "description",
+                    "title"
+                  ],
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "creatorsid",
+                    "id",
+                    "time",
+                    "catagories",
+                    "creatorsname",
+                    "description",
+                    "title"
+                  ],
+                  "filter": {
+                    "creatorsid": {
+                      "_eq": "x-hasura-user-id"
+                    }
+                  }
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "creatorsid",
+                    "id",
+                    "time",
+                    "catagories",
+                    "creatorsname",
+                    "description",
+                    "title"
+                  ],
+                  "filter": {
+                    "creatorsid": {
+                      "_eq": "x-hasura-user-id"
+                    }
+                  },
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "filter": {
+                    "creatorsid": {
+                      "_eq": "x-hasura-user-id"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "steps",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "recipe",
+                "using": {
+                  "foreign_key_constraint_on": "recipes_id"
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "user",
+                "permission": {
+                  "check": {},
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "step"
+                  ]
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "step"
+                  ],
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "recipes_id",
+                    "step"
+                  ],
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "users",
+              "schema": "public"
+            },
+            "array_relationships": [
+              {
+                "name": "comments",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "users_id",
+                    "table": {
+                      "name": "comment",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "haverecipes",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "creatorsid"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "recipes",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "likes",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "users_id",
+                    "table": {
+                      "name": "like",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "ratings",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "users_id",
+                    "table": {
+                      "name": "rating",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "check": {},
+                  "columns": [
+                    "id",
+                    "name",
+                    "password"
+                  ]
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "name",
+                    "password"
+                  ],
+                  "filter": {}
+                }
+              }
+            ],
+            "event_triggers": [
+              {
+                "name": "notifiyadmin",
+                "definition": {
+                  "enable_manual": false,
+                  "insert": {
+                    "columns": "*"
+                  }
+                },
+                "retry_conf": {
+                  "interval_sec": 10,
+                  "num_retries": 0,
+                  "timeout_sec": 60
+                },
+                "webhook": "http://host.docker.internal:8000/route/handleuser",
+                "cleanup_config": {
+                  "batch_size": 10000,
+                  "clean_invocation_logs": false,
+                  "clear_older_than": 168,
+                  "paused": true,
+                  "schedule": "0 0 * * *",
+                  "timeout": 60
+                }
+              }
+            ]
+          }
+        ],
+        "functions": [
+          {
+            "function": {
+              "name": "count_ratings",
+              "schema": "public"
+            }
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "database_url": "postgresql://postgres:13399955@host.docker.internal:5432/recipes",
+            "isolation_level": "read-committed",
+            "use_prepared_statements": false
+          }
+        }
+      }
+    ],
+    "actions": [
+      {
+        "name": "login",
+        "definition": {
+          "handler": "http://host.docker.internal:8000/route/login",
+          "output_type": "SampleOutput1",
+          "arguments": [
+            {
+              "name": "name",
+              "type": "String!"
+            },
+            {
+              "name": "password",
+              "type": "String!"
+            }
+          ],
+          "type": "mutation",
+          "kind": "synchronous"
+        },
+        "permissions": [
+          {
+            "role": "user"
+          },
+          {
+            "role": "public"
+          }
+        ]
+      },
+      {
+        "name": "signup",
+        "definition": {
+          "handler": "http://host.docker.internal:8000/route/register",
+          "output_type": "SampleOutput",
+          "arguments": [
+            {
+              "name": "name",
+              "type": "String!"
+            },
+            {
+              "name": "password",
+              "type": "String!"
+            }
+          ],
+          "type": "mutation",
+          "kind": "synchronous"
+        },
+        "permissions": [
+          {
+            "role": "public"
+          }
+        ]
+      }
+    ],
+    "custom_types": {
+      "objects": [
+        {
+          "name": "SampleOutput",
+          "fields": [
+            {
+              "name": "accessToken",
+              "type": "String!"
+            },
+            {
+              "name": "success",
+              "type": "Boolean!"
+            }
+          ]
+        },
+        {
+          "name": "SampleOutput1",
+          "fields": [
+            {
+              "name": "accessToken",
+              "type": "String!"
+            },
+            {
+              "name": "success",
+              "type": "Boolean!"
+            },
+            {
+              "name": "id",
+              "type": "Int!"
+            },
+            {
+              "name": "name",
+              "type": "String!"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
