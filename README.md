@@ -1,7 +1,46 @@
-# Vue 3 + Vite
+ ##  setting up hasura and graphql 
+ check if wheather hasura and graphql instance alerady running in your docker if not 
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+ 1.head to **\hasuraconfig**   folder and open **docker-compose.yaml** file make sure to change all **postgrespassword**
+ field   with Your postgres database password
+ 
+ 2.make sure to set **HASURA_GRAPHQL_JWT_SECRET key** with any 32 character that you want
+ 
+ 3.make sure to set **HASURA_GRAPHQL_ADMIN_SECRET**  to your own hasura console password
+ 
+ 4.open cmd and change directory to **\hasuraconfig**
+ 
+ 5.type   **docker-compose up -d**    and run the command
+ 
+ 6.open hasura console in browser and head over to setting
+ 
+ 7.Import hasura metadata name **hasura_metadata_2023_01_29_13_30_51_667**  found in **\hasuraconfig** 
+ 
+ 8.now hasura is ready
+ ## setting up golang and backend
+ 1.head to **\hahu_backend** folder
+ 
+ 2.open cmd and change directory to  **\hahu_backend**
+ 
+ 3.type  **go get**   and hit enter to install all required dependencies
+ 
+ 4.head to **\hahu_backend\helper** and open **jwt.go** file and make sure to change the string passed to this method 
+ is your  **HASURA_GRAPHQL_JWT_SECRET key** that we set in **docker-compose.yaml** file
+ 
+ **token.SignedString([]byte("HASURA_GRAPHQL_JWT_SECRET"))**
+ 
+ 5.type  **go run main.go**  in cmd and run command 
+ 
+ 6.your golang server start in port 8000
 
-## Recommended IDE Setup
+ ## setting up vue js and frontend
+  1.open cmd and change directory to the root directory of clone github repository
+  
+  2.type **npm install** to  install all required dependencies
+  
+  3.type **npm run dev** to start your vue js and vite server
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+
+
+
